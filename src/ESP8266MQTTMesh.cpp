@@ -967,10 +967,10 @@ void ESP8266MQTTMesh::onWifiDisconnect(const WiFiEventStationModeDisconnected& e
         // If we rebooted without a clean shutdown, we may still be associated with this AP, in which case
         // we'll be booted and should try again
         retry_connect--;
-    }else if (event.reason == WIFI_DISCONNECT_REASON_ASSOC_LEAVE  && retry_connect) {
+    }else if (event.reason == WIFI_DISCONNECT_REASON_ASSOC_LEAVE) {
         // check disconnect reason 8
-        dbgPrintln(EMMDBG_WIFI, "Test retry: " + retry_connect);
-        retry_connect--;
+        dbgPrintln(EMMDBG_WIFI, "Restart Esp cause: WIFI_DISCONNECT_REASON_ASSOC_LEAVE");
+        ESP.restart();
     } else{
         if (ap_ptr != NULL){
             if (ap_ptr->next != NULL){
