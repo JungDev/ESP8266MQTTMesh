@@ -1010,7 +1010,7 @@ void ESP8266MQTTMesh::onMqttConnect(bool sessionPresent) {
     char subscribe[TOPIC_LEN];
     strlcpy(subscribe, inTopic, sizeof(subscribe));
     strlcat(subscribe, "#", sizeof(subscribe));
-    mqttClient.subscribe(subscribe, 0);
+    mqttClient.subscribe(subscribe, 1); //TEST QOS 1
 
     send_connected_msg();
     setup_AP();
